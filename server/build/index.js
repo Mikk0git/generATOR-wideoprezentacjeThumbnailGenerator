@@ -45,7 +45,7 @@ app.listen(port, function () {
     console.log("Example app listening on port ".concat(port));
 });
 app.post("/newImage", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var body, images, jimps, baseImage, overlayImage1, overlayImage2, x1, y1, x2, y2, err_1;
+    var body, images, jimps, baseImage, overlayImage1, overlayImage2, overlayImage3, x1, y1, x2, y2, x3, y3, err_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -54,7 +54,8 @@ app.post("/newImage", function (req, res) { return __awaiter(void 0, void 0, voi
                 images = [
                     "./images/bg/".concat(body.bg, ".png"),
                     "./images/ator/".concat(body.ator, ".png"),
-                    "./images/right/".concat(body.right, ".png"),
+                    "./images/elements/".concat(body.element1, ".png"),
+                    "./images/elements/".concat(body.element2, ".png"),
                 ];
                 return [4 /*yield*/, Promise.all(images.map(function (image) { return jimp.read(image); }))];
             case 1:
@@ -62,12 +63,16 @@ app.post("/newImage", function (req, res) { return __awaiter(void 0, void 0, voi
                 baseImage = jimps[0];
                 overlayImage1 = jimps[1];
                 overlayImage2 = jimps[2];
+                overlayImage3 = jimps[3];
                 x1 = 0;
                 y1 = baseImage.getHeight() - overlayImage1.getHeight();
                 x2 = baseImage.getWidth() - overlayImage2.getWidth();
                 y2 = baseImage.getHeight() - overlayImage2.getHeight();
+                x3 = baseImage.getWidth() - overlayImage3.getWidth() - 300;
+                y3 = baseImage.getHeight() - overlayImage3.getHeight();
                 baseImage.composite(overlayImage1, x1, y1);
                 baseImage.composite(overlayImage2, x2, y2);
+                baseImage.composite(overlayImage3, x3, y3);
                 baseImage.write("./images/newImage.png", function (err) {
                     if (err) {
                         console.error("Error processing images:", err);
