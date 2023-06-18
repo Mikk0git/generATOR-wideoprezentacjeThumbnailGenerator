@@ -1,6 +1,7 @@
 <script lang="ts">
 
   import ElementMenu from './lib/ElementMenu.svelte';
+  import Generate from './lib/Generate.svelte';
 </script>
 
 <main>
@@ -14,6 +15,7 @@
     <div class="menu" id="element2"><ElementMenu type = "elements"/></div>
   </div>
   
+  <Generate />
 
  
 </main>

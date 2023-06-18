@@ -27,15 +27,14 @@
     }
   };
 </script>
-
-<button on:click={up}>
+<button on:click={up} class="upBtn">
   👆
 </button>
 
-<p>{numInArray}</p>
+<!-- <p>{numInArray}</p> -->
 
-<img width="100px" src={`images/${type}/${menuList[numInArray]}.webp`} alt="Image" />
+<img width="200px" src={`images/${type}/${menuList[numInArray]}.webp`} alt="" />
 
-<button on:click={down}>
+<button on:click={down} class="downBtn">
   👇
 </button>
