@@ -1,6 +1,5 @@
 <script lang="ts">
 
-  import Counter from './lib/Counter.svelte'
   import ElementMenu from './lib/ElementMenu.svelte';
 </script>
 
@@ -14,9 +13,7 @@
     <div class="menu" id="element1"><ElementMenu type = "elements"/></div>
     <div class="menu" id="element2"><ElementMenu type = "elements"/></div>
   </div>
-  <div class="card">
-    <Counter />
-  </div>
+  
 
  
 </main>

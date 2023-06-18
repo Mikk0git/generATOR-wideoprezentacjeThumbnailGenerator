@@ -1,41 +1,41 @@
 <script lang="ts">
-  export let type;
+  export let type: string = '';
   let numInArray: number = 0;
   let menuList: string[] = [];
-    
-  if (type == "ator") {
-    menuList = ["atorKomentator", "atorZielon", "atorJackowski"];
-  } else if (type == "bg") {
-    menuList = ["corona"];
-  } else if (type == "elements") {
-    menuList = ["alien1", "biden1", "kaczorKrol", "klausSchwab1"];
+  
+  if (type == 'ator') {
+    menuList = ['atorKomentator', 'atorZielon', 'atorJackowski'];
+  } else if (type == 'bg') {
+    menuList = ['corona'];
+  } else if (type == 'elements') {
+    menuList = ['alien1', 'biden1', 'kaczorKrol', 'klausSchwab1'];
   }
-
+  
   const up = () => {
-    if (menuList.length > numInArray) {
+    if (numInArray < menuList.length - 1) {
       numInArray += 1;
-    }
-    else{
-        numInArray = 0
+    } else {
+      numInArray = 0;
     }
   };
-
+  
   const down = () => {
     if (numInArray > 0) {
       numInArray -= 1;
-    }
-    else{
-        numInArray = menuList.length
+    } else {
+      numInArray = menuList.length - 1;
     }
   };
 </script>
 
-<button id="up" on:click={up}>
+<button on:click={up}>
   👆
 </button>
 
-{numInArray}
+<p>{numInArray}</p>
 
-<button id="down" on:click={down}>
+<img width="100px" src={`images/${type}/${menuList[numInArray]}.webp`} alt="Image" />
+
+<button on:click={down}>
   👇
 </button>
