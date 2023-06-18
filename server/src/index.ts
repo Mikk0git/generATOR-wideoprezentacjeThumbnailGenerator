@@ -5,18 +5,21 @@ const express = require("express");
 const app = express();
 const port = 3000;
 
+app.use(express.json());
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
 
-app.get(
+app.post(
   "/newImage",
   async (req: any, res: { send: (arg0: string) => void }) => {
     try {
+      const { body } = req;
       const images = [
-        "./images/bg/corona.png",
-        "./images/ator/atorKomentator.png",
-        "./images/right/kaczorKrol.png",
+        `./images/bg/${body.bg}.png`,
+        `./images/ator/${body.ator}.png`,
+        `./images/right/${body.right}.png`,
       ];
 
       const jimps = await Promise.all(images.map((image) => jimp.read(image)));

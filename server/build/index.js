@@ -40,19 +40,21 @@ var jimp = require("jimp");
 var express = require("express");
 var app = express();
 var port = 3000;
+app.use(express.json());
 app.listen(port, function () {
     console.log("Example app listening on port ".concat(port));
 });
-app.get("/newImage", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var images, jimps, baseImage, overlayImage1, overlayImage2, x1, y1, x2, y2, err_1;
+app.post("/newImage", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var body, images, jimps, baseImage, overlayImage1, overlayImage2, x1, y1, x2, y2, err_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
+                body = req.body;
                 images = [
-                    "./images/bg/corona.png",
-                    "./images/ator/atorKomentator.png",
-                    "./images/right/kaczorKrol.png",
+                    "./images/bg/".concat(body.bg, ".png"),
+                    "./images/ator/".concat(body.ator, ".png"),
+                    "./images/right/".concat(body.right, ".png"),
                 ];
                 return [4 /*yield*/, Promise.all(images.map(function (image) { return jimp.read(image); }))];
             case 1:
