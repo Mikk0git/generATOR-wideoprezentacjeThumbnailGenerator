@@ -35,31 +35,40 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 console.log("To, że coś jest prawdziwe..");
 var jimp = require("jimp");
+var cors = require("cors");
 var express = require("express");
 var app = express();
 var port = 3000;
 app.use(express.json());
+app.use(cors());
 app.listen(port, function () {
     console.log("Example app listening on port ".concat(port));
 });
 app.post("/newImage", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var body, images, jimps, baseImage, overlayImage1, overlayImage2, overlayImage3, x1, y1, x2, y2, x3, y3, err_1;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
+    var _a, ator, bg, element1, element2, images, jimps, baseImage, overlayImage1, overlayImage2, overlayImage3, x1, y1, x2, y2, x3, y3, newImagePath, err_1;
+    return __generator(this, function (_b) {
+        switch (_b.label) {
             case 0:
-                _a.trys.push([0, 2, , 3]);
-                body = req.body;
+                _b.trys.push([0, 3, , 4]);
+                console.log(req.body.bg);
+                _a = req.body, ator = _a.ator, bg = _a.bg, element1 = _a.element1, element2 = _a.element2;
+                console.log("ator:", ator);
+                console.log("bg:", bg);
+                console.log("element1:", element1);
+                console.log("element2:", element2);
+                console.log(req.body.bg);
                 images = [
-                    "./images/bg/".concat(body.bg, ".png"),
-                    "./images/ator/".concat(body.ator, ".png"),
-                    "./images/elements/".concat(body.element1, ".png"),
-                    "./images/elements/".concat(body.element2, ".png"),
+                    "./images/bg/".concat(bg, ".png"),
+                    "./images/ator/".concat(ator, ".png"),
+                    "./images/elements/".concat(element1, ".png"),
+                    "./images/elements/".concat(element2, ".png"),
                 ];
                 return [4 /*yield*/, Promise.all(images.map(function (image) { return jimp.read(image); }))];
             case 1:
-                jimps = _a.sent();
+                jimps = _b.sent();
                 baseImage = jimps[0];
                 overlayImage1 = jimps[1];
                 overlayImage2 = jimps[2];
@@ -73,23 +82,19 @@ app.post("/newImage", function (req, res) { return __awaiter(void 0, void 0, voi
                 baseImage.composite(overlayImage1, x1, y1);
                 baseImage.composite(overlayImage2, x2, y2);
                 baseImage.composite(overlayImage3, x3, y3);
-                baseImage.write("./images/newImage.png", function (err) {
-                    if (err) {
-                        console.error("Error processing images:", err);
-                        res.send("Error processing images!");
-                    }
-                    else {
-                        console.log("Image saved!");
-                        res.send("Image saved!");
-                    }
-                });
-                return [3 /*break*/, 3];
+                newImagePath = "./images/newImage.png";
+                return [4 /*yield*/, baseImage.writeAsync(newImagePath)];
             case 2:
-                err_1 = _a.sent();
+                _b.sent();
+                console.log("Image saved!");
+                res.send("Image saved!");
+                return [3 /*break*/, 4];
+            case 3:
+                err_1 = _b.sent();
                 console.error("Error processing images:", err_1);
-                res.send("Error processing images!");
-                return [3 /*break*/, 3];
-            case 3: return [2 /*return*/];
+                res.status(500).send("Error processing images!");
+                return [3 /*break*/, 4];
+            case 4: return [2 /*return*/];
         }
     });
 }); });
