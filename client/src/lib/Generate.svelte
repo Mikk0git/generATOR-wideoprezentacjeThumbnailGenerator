@@ -1,9 +1,9 @@
 <script lang="ts">
 
-let ator: string = "atorKomentator";
-let bg: string = "corona";
-let element1: string = "alien1";
-let element2: string = "biden1";
+export let ator: string 
+export let bg: string
+export let element1: string 
+export let element2: string 
 
 const send = async () => {
   try {
