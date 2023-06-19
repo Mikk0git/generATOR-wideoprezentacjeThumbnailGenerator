@@ -186,3 +186,5 @@ dist-ssr
 *.sln
 *.sw?
 server/build/index.js
+/server/build/*
+server/src/index.ts

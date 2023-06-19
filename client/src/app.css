@@ -69,6 +69,12 @@ h1 {
   padding: 1%;
 }
 
+.thumbnail {
+  border: #535bf2 solid 1px;
+  margin-top: 4%;
+  max-width: 50vw;
+}
+
 button {
   border-radius: 8px;
   border: 1px solid transparent;
